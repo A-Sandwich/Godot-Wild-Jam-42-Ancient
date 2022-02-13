@@ -43,7 +43,7 @@ func input():
 		initiate_jump()
 	
 	if velocity.x != 0:
-		$AnimatedSprite.play("default")
+		$AnimatedSprite.play("walk")
 	else:
 		$AnimatedSprite.stop()
 
