@@ -36,11 +36,8 @@ func input():
 	
 	velocity = velocity.normalized() * speed
 	
-	if Input.is_action_pressed("move_up"):
+	if Input.is_action_pressed("move_up") or Input.is_action_pressed("jump"):
 		initiate_jump()
-	if Input.is_action_pressed("move_down"):
-		#velocity.y += 1
-		pass
 
 func apply_gravity(delta):
 	velocity.y += gravity + delta
