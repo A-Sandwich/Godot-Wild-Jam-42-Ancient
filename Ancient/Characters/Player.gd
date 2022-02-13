@@ -31,14 +31,21 @@ func fall_detection():
 func input():
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
+		$AnimatedSprite.flip_h = true
 		velocity.x -= 1
 	if Input.is_action_pressed("move_right"):
+		$AnimatedSprite.flip_h = false
 		velocity.x += 1
 	
 	velocity = velocity.normalized() * speed
 	
 	if Input.is_action_pressed("move_up") or Input.is_action_pressed("jump"):
 		initiate_jump()
+	
+	if velocity.x != 0:
+		$AnimatedSprite.play("default")
+	else:
+		$AnimatedSprite.stop()
 
 func apply_gravity(delta):
 	velocity.y += gravity + delta
