@@ -8,6 +8,7 @@ radius = 139.0
 height = 32.0
 
 [node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -19,3 +20,12 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="JumpTimeout" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="JumpStepDown" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="JumpTimeout" to="." method="_on_JumpTimeout_timeout"]
+[connection signal="timeout" from="JumpStepDown" to="." method="_on_JumpStepDown_timeout"]
