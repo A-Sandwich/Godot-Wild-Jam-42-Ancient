@@ -6,6 +6,7 @@ var velocity = Vector2.ZERO
 var gravity = 1000
 var jumpforce = 0
 var jump_max = -2000
+var is_falling = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,11 +15,18 @@ func _ready():
 
 func _physics_process(delta):
 	input()
+	fall_detection()
 	apply_jump()
 	apply_gravity(delta)
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-
+func fall_detection():
+	if not is_on_floor() and not is_falling:
+		is_falling = true
+		$JumpAffordance.stop()
+		$JumpAffordance.start()
+	elif is_on_floor():
+		is_falling = false
 func input():
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
@@ -38,7 +46,7 @@ func apply_gravity(delta):
 	velocity.y += gravity + delta
 
 func initiate_jump():
-	if not is_on_floor():
+	if (not is_on_floor() and $JumpAffordance.time_left == 0) or $JumpTimeout.time_left != 0:
 		return
 	$JumpStepDown.stop()
 	$JumpTimeout.start()
@@ -63,3 +71,7 @@ func _on_JumpStepDown_timeout():
 		$JumpStepDown.start()
 	else:
 		$JumpStepDown.stop()
+
+
+func _on_JumpAffordance_timeout():
+	$JumpAffordance.stop()

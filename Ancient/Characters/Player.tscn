@@ -27,5 +27,9 @@ wait_time = 0.25
 [node name="JumpStepDown" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="JumpAffordance" type="Timer" parent="."]
+wait_time = 0.15
+
 [connection signal="timeout" from="JumpTimeout" to="." method="_on_JumpTimeout_timeout"]
 [connection signal="timeout" from="JumpStepDown" to="." method="_on_JumpStepDown_timeout"]
+[connection signal="timeout" from="JumpAffordance" to="." method="_on_JumpAffordance_timeout"]
