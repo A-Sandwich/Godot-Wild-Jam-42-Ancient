@@ -18,6 +18,7 @@ func _physics_process(delta):
 	fall_detection()
 	apply_jump()
 	apply_gravity(delta)
+	var current_location = global_position
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 func fall_detection():
@@ -49,6 +50,11 @@ func initiate_jump():
 	$JumpTimeout.start()
 
 func apply_jump():
+	if is_on_ceiling():
+		$JumpTimeout.stop()
+		$JumpStepDown.stop()
+		jumpforce = 0
+		return
 	if $JumpTimeout.time_left > 0 and $JumpTimeout.time_left > 0.15:
 		jumpforce = jump_max
 	elif not Input.is_action_pressed("move_up") and jumpforce != 0 and $JumpStepDown.time_left == 0:
