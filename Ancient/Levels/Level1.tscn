@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/WorldParts/floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Stegosaurus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/WorldParts/MovingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Characters/Enemy.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,9 +16,12 @@ tile_data = PoolIntArray( -1179662, 1, 0, -1179661, 1, 0, -1179660, 1, 0, -11796
 position = Vector2( -84, -244 )
 
 [node name="Stegosaurus" parent="." instance=ExtResource( 3 )]
-position = Vector2( 644, -277 )
+position = Vector2( 582, -91 )
 mass = 1.0
 gravity_scale = 100.0
 
 [node name="MovingPlatform" parent="." instance=ExtResource( 4 )]
 position = Vector2( -350, -168 )
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 232, -494 )
