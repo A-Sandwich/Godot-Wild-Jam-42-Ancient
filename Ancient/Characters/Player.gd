@@ -20,12 +20,14 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	var current_location = global_position
 	velocity = move_and_slide(velocity, Vector2.UP)
+	collision_detection()
+
+func collision_detection():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		print("I collided with ", collision.collider.name)
 		if "Enemy" in collision.collider.name:
 			$"/root/WorldState".lose()
-	
+
 func fall_detection():
 	if not is_on_floor() and not is_falling:
 		is_falling = true

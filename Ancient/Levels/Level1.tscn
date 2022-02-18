@@ -26,8 +26,11 @@ mass = 1.0
 gravity_scale = 100.0
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 232, -494 )
+position = Vector2( 319, -467 )
 
 [node name="MovingPlatform2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -350, -168 )
 scale = Vector2( 0.015625, 0.015625 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 232, -494 )
