@@ -9,13 +9,18 @@ var jump_max = -2000
 var is_falling = false
 var original_position = Vector2.ZERO
 var time_since_last_save = 0.0
+var pause_player = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$"/root/WorldState".connect("win", self, "_on_win")
 	original_position = global_position
+	$HUD.start()
 
 
 func _physics_process(delta):
+	if pause_player:
+		return
 	input()
 	fall_detection()
 	apply_jump()
@@ -103,7 +108,14 @@ func _on_JumpAffordance_timeout():
 
 
 func _on_Respawn_timeout():
+	if pause_player:
+		return
 	$"/root/WorldState".lose()
 	global_position = original_position
 
-
+func _on_win():
+	pause_player = true
+	$WinView.global_position = Vector2((original_position.x + global_position.x)/2, (original_position.y + global_position.y)/2)
+	$Camera2D.current = false
+	$WinView.current = true
+	
