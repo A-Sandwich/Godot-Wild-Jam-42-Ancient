@@ -10,8 +10,9 @@ var is_falling = false
 var original_position = Vector2.ZERO
 var time_since_last_save = 0.0
 var pause_player = true
-var is_panning = true
+var is_panning = false
 var goal
+var fire_ball = load("res://Characters/FireBall.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 	$PanCamera.make_current()
 	goal = get_goal()
 	connect_to_enemies()
+	finish_pan()
 
 func connect_to_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemy")
@@ -37,12 +39,14 @@ func pan_to_goal(delta):
 	if goal == null:
 		goal = get_goal()
 	if $PanCamera.global_position == goal.global_position:
-		is_panning = false
-		$Camera2D.make_current()
-		$HUD.start()
-		pause_player = false
+		finish_pan()
 	$PanCamera.global_position = $PanCamera.global_position.move_toward(goal.global_position, 7.5) 
-	
+
+func finish_pan():
+	is_panning = false
+	$Camera2D.make_current()
+	$HUD.start()
+	pause_player = false
 	
 
 func _physics_process(delta):
@@ -77,6 +81,7 @@ func fall_detection():
 	elif is_on_floor():
 		$Respawn.stop()
 		is_falling = false
+
 func input():
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
@@ -88,9 +93,16 @@ func input():
 	
 	velocity = velocity.normalized() * speed
 	
-	if Input.is_action_pressed("move_up") or Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("move_up"):
 		initiate_jump()
 	
+	if Input.is_action_just_pressed("FireBall"):
+		$AnimatedSprite.play("fireball")
+		$Fireball.start()
+		return
+	
+	if $AnimatedSprite.is_playing():
+		return
 	if velocity.x != 0:
 		$AnimatedSprite.play("walk")
 	else:
@@ -147,7 +159,22 @@ func _on_win():
 	$WinView.global_position = Vector2((original_position.x + global_position.x)/2, (original_position.y + global_position.y)/2)
 	$Camera2D.current = false
 	$WinView.current = true
+	visible = false
 	
 func _on_die():
 	global_position = original_position
 	$"/root/WorldState".lose()
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "fireball":
+		$AnimatedSprite.stop()
+
+
+func _on_Fireball_timeout():
+	$Fireball.stop()
+	var fb = fire_ball.instance()
+	get_parent().add_child(fb)
+	if $AnimatedSprite.flip_h:
+		fb.direction = -1
+	fb.global_position = Vector2(global_position.x + (30 * fb.direction), global_position.y - 10)

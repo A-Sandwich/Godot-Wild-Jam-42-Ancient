@@ -21,6 +21,8 @@ func _physics_process(delta):
 			continue
 		if deaths[ghost_index].size() > frames_replayed:
 			ghosts[ghost_index].global_position = deaths[ghost_index][frames_replayed]
+		else:
+			ghosts[ghost_index].visible = false
 	frames_replayed = frames_replayed + 1
 	
 func append_position(global_position):
