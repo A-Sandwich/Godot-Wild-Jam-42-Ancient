@@ -18,10 +18,10 @@ position = Vector2( 12448, -2880 )
 scale = Vector2( 4, 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -84, -244 )
+position = Vector2( -273, -163 )
 
 [node name="Stegosaurus" parent="." instance=ExtResource( 3 )]
-position = Vector2( 582, -91 )
+position = Vector2( 629, -134 )
 mass = 1.0
 gravity_scale = 100.0
 
@@ -33,4 +33,4 @@ position = Vector2( -350, -168 )
 scale = Vector2( 0.015625, 0.015625 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 232, -494 )
+position = Vector2( -176, -125 )

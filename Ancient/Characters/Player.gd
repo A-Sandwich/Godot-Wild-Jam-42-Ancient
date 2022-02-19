@@ -9,16 +9,45 @@ var jump_max = -2000
 var is_falling = false
 var original_position = Vector2.ZERO
 var time_since_last_save = 0.0
-var pause_player = false
+var pause_player = true
+var is_panning = true
+var goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/WorldState".connect("win", self, "_on_win")
 	original_position = global_position
-	$HUD.start()
+	$PanCamera.make_current()
+	goal = get_goal()
+	connect_to_enemies()
 
+func connect_to_enemies():
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		enemy.connect("die", self, "_on_die") 
+
+func get_goal():
+	goal = get_tree().get_nodes_in_group("goal")
+	if goal.size() > 0:
+		return goal[0]
+
+func pan_to_goal(delta):
+	if not is_panning:
+		return
+	if goal == null:
+		goal = get_goal()
+	if $PanCamera.global_position == goal.global_position:
+		is_panning = false
+		$Camera2D.make_current()
+		$HUD.start()
+		pause_player = false
+	$PanCamera.global_position = $PanCamera.global_position.move_toward(goal.global_position, 7.5) 
+	
+	
 
 func _physics_process(delta):
+	pan_to_goal(delta)
+	
 	if pause_player:
 		return
 	input()
@@ -37,7 +66,7 @@ func collision_detection():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if "Enemy" in collision.collider.name:
-			$"/root/WorldState".lose()
+			_on_die()
 
 func fall_detection():
 	if not is_on_floor() and not is_falling:
@@ -119,3 +148,6 @@ func _on_win():
 	$Camera2D.current = false
 	$WinView.current = true
 	
+func _on_die():
+	global_position = original_position
+	$"/root/WorldState".lose()

@@ -31,20 +31,24 @@ func _ready():
 	pass # Replace with function body.
 
 func lose():
+	reset_current_life()
+
+
+func reset_current_life():
+	if current_life.size() == 0:
+		return
 	var copy = current_life.duplicate(true)
 	deaths.append(copy)
 	current_life.clear()
-
 
 func win():
 	emit_signal("win")
-	var copy = current_life.duplicate(true)
-	deaths.append(copy)
-	current_life.clear()
+	reset_current_life()
 	for attempt in deaths:
 		if attempt.size() == 0:
 			#This shouldn't happen
 			print("array contained zero positions")
+			continue
 		var ghost = player_ghost.instance()
 		ghost.global_position = attempt[0]
 		ghosts.append(ghost)

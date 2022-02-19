@@ -90,6 +90,8 @@ wait_time = 3.0
 [node name="WinView" type="Camera2D" parent="."]
 zoom = Vector2( 3, 3 )
 
+[node name="PanCamera" type="Camera2D" parent="."]
+
 [connection signal="timeout" from="JumpTimeout" to="." method="_on_JumpTimeout_timeout"]
 [connection signal="timeout" from="JumpStepDown" to="." method="_on_JumpStepDown_timeout"]
 [connection signal="timeout" from="JumpAffordance" to="." method="_on_JumpAffordance_timeout"]
