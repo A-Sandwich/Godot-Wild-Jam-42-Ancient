@@ -81,6 +81,10 @@ wait_time = 0.15
 frames = SubResource( 5 )
 animation = "fireball"
 
+[node name="Respawn" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="JumpTimeout" to="." method="_on_JumpTimeout_timeout"]
 [connection signal="timeout" from="JumpStepDown" to="." method="_on_JumpStepDown_timeout"]
 [connection signal="timeout" from="JumpAffordance" to="." method="_on_JumpAffordance_timeout"]
+[connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]

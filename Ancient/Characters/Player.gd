@@ -7,10 +7,12 @@ var gravity = 1000
 var jumpforce = 0
 var jump_max = -2000
 var is_falling = false
+var original_position = Vector2.ZERO
+var time_since_last_save = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	original_position = global_position
 
 
 func _physics_process(delta):
@@ -21,6 +23,10 @@ func _physics_process(delta):
 	var current_location = global_position
 	velocity = move_and_slide(velocity, Vector2.UP)
 	collision_detection()
+	time_since_last_save += delta
+	if time_since_last_save > 0.01666:
+		time_since_last_save = 0.0
+		$"/root/WorldState".append_position(global_position)
 
 func collision_detection():
 	for i in get_slide_count():
@@ -30,10 +36,12 @@ func collision_detection():
 
 func fall_detection():
 	if not is_on_floor() and not is_falling:
+		$Respawn.start()
 		is_falling = true
 		$JumpAffordance.stop()
 		$JumpAffordance.start()
 	elif is_on_floor():
+		$Respawn.stop()
 		is_falling = false
 func input():
 	velocity = Vector2.ZERO
@@ -92,3 +100,10 @@ func _on_JumpStepDown_timeout():
 
 func _on_JumpAffordance_timeout():
 	$JumpAffordance.stop()
+
+
+func _on_Respawn_timeout():
+	$"/root/WorldState".lose()
+	global_position = original_position
+
+
