@@ -98,7 +98,7 @@ func input():
 	
 	if Input.is_action_just_pressed("FireBall"):
 		$AnimatedSprite.play("fireball")
-		$Fireball.start()
+		shoot_fireball()
 		return
 	
 	if $AnimatedSprite.is_playing():
@@ -171,8 +171,7 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.stop()
 
 
-func _on_Fireball_timeout():
-	$Fireball.stop()
+func shoot_fireball():
 	var fb = fire_ball.instance()
 	get_parent().add_child(fb)
 	if $AnimatedSprite.flip_h:

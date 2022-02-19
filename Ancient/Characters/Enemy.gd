@@ -57,3 +57,5 @@ func fall_detection():
 func apply_gravity(delta):
 	velocity.y += gravity * delta
 
+func die():
+	queue_free()

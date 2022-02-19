@@ -92,12 +92,8 @@ zoom = Vector2( 3, 3 )
 
 [node name="PanCamera" type="Camera2D" parent="."]
 
-[node name="Fireball" type="Timer" parent="."]
-wait_time = 0.3
-
 [connection signal="timeout" from="JumpTimeout" to="." method="_on_JumpTimeout_timeout"]
 [connection signal="timeout" from="JumpStepDown" to="." method="_on_JumpStepDown_timeout"]
 [connection signal="timeout" from="JumpAffordance" to="." method="_on_JumpAffordance_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
-[connection signal="timeout" from="Fireball" to="." method="_on_Fireball_timeout"]
