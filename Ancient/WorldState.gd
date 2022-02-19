@@ -8,6 +8,8 @@ var play_attempts = false
 var player_ghost = load("res://Characters/PlayerGhost.tscn")
 var frames_replayed = 0
 var time_since_last_update = 0.0
+var levels = ["res://Levels/Level1.tscn", "res://Levels/Level2.tscn"]
+var level_index = 0
 signal win
 
 func _physics_process(delta):
@@ -55,8 +57,24 @@ func win():
 		ghost.global_position = attempt[0]
 		ghosts.append(ghost)
 		add_child(ghost)
+	frames_replayed = 0
 	play_attempts = true
 	print("WINNER")
 
 func get_level_center():
 	return Vector2(100, 100)
+
+func reset_replay_data():
+	deaths.clear()
+	current_life.clear()
+	ghosts.clear()
+	frames_replayed = 0
+
+func load_next_level():
+	reset_replay_data()
+	level_index += 1
+	if level_index >= levels.size():
+		return
+	var level = levels[level_index]
+	
+	get_tree().change_scene(level)

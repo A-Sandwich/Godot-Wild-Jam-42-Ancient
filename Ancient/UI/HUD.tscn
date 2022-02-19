@@ -60,3 +60,5 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Win/Button" to="." method="_on_Button_pressed"]
