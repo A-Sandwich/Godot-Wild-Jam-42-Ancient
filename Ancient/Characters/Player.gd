@@ -10,7 +10,7 @@ var is_falling = false
 var original_position = Vector2.ZERO
 var time_since_last_save = 0.0
 var pause_player = true
-var is_panning = false
+var is_panning = true
 var goal
 var fire_ball = load("res://Characters/FireBall.tscn")
 
@@ -21,7 +21,6 @@ func _ready():
 	$PanCamera.make_current()
 	goal = get_goal()
 	connect_to_enemies()
-	finish_pan()
 
 func connect_to_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemy")

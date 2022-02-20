@@ -8,12 +8,8 @@ var stegosaurus = load("res://Characters/Stegosaurus.tscn")
 func _ready():
 	rng.randomize()
 	for lorp in range(100):
-		var spiky_boi = stegosaurus.instance()
+		var spikey_boi = stegosaurus.instance()
 		var x = rng.randi_range(46, 1200)
-		spiky_boi.global_position = Vector2(x, -600)
+		spikey_boi.global_position = Vector2(x, -600)
 		
-		add_child(spiky_boi)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+		add_child(spikey_boi)

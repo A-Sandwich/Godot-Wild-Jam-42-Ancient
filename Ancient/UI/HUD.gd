@@ -38,9 +38,9 @@ func _on_win():
 func win():
 	track_time = false
 	if $"/root/WorldState".has_next_level():
-		show_end()
-	else:
 		$Win.visible = true
+	else:
+		show_end()
 
 
 func _on_Button_pressed():

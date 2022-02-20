@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Ancient"
-run/main_scene="res://Levels/Level1.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://UI/Intro.tscn"
+config/icon="res://Assets/Sprites/player.png"
 
 [autoload]
 
