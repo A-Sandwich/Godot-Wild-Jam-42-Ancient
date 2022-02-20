@@ -15,7 +15,7 @@ tile_data = PoolIntArray( -655344, 1, 0, -655343, 1, 0, -655342, 1, 0, -655341, 
 position = Vector2( -913, -167 )
 
 [node name="Area2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1556, -360 )
+position = Vector2( 1563, -441 )
 
 [node name="WASD" parent="." instance=ExtResource( 3 )]
 position = Vector2( -590, -196 )
