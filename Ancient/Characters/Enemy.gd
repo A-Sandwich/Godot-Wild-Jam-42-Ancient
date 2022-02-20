@@ -58,4 +58,10 @@ func apply_gravity(delta):
 	velocity.y += gravity * delta
 
 func die():
+	$Collision.global_position = Vector2(-1000000, -1000000)
+	visible = false
+	$OH.play()
+
+
+func _on_OH_finished():
 	queue_free()
