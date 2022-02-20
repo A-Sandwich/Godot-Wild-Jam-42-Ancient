@@ -22,4 +22,5 @@ func _on_Goal_area_entered(area):
 
 func _on_Goal_body_entered(body):
 	if "Player" in body.name:
+		$Bingo.play()
 		$"/root/WorldState".win()

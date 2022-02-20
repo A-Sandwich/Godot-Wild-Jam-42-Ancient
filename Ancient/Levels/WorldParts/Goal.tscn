@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sprites/door.png" type="Texture" id=1]
 [ext_resource path="res://Levels/WorldParts/Goal.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/bingo.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 160 )
@@ -44,5 +45,8 @@ amount = 50
 randomness = 1.0
 visibility_rect = Rect2( -300, -300, 600, 600 )
 process_material = SubResource( 3 )
+
+[node name="Bingo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Goal_body_entered"]
