@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Levels/Level4.gd" type="Script" id=1]
+[ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/WorldParts/floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Stegosaurus.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/WorldParts/MovingPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/WorldParts/Goal.tscn" type="PackedScene" id=6]
+
+[node name="Level4" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
+tile_data = PoolIntArray( -458757, 1, 0, -458756, 1, 0, -458755, 1, 0, -458754, 1, 0, -458753, 1, 0, -327681, 1, 0, -393200, 1, 0, -262145, 1, 0, -327664, 1, 0, -196609, 1, 0, -262128, 1, 0, -65537, 1, 0, -1, 1, 0, -65520, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0 )
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 5 )]
+position = Vector2( 834, -192 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 842, -58 )
+
+[node name="Saurs" type="Node2D" parent="."]
+
+[node name="Stegosaurus" parent="Saurs" instance=ExtResource( 4 )]
+position = Vector2( 1234, -534 )
+
+[node name="MovingPlatform2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 186, -226 )
+
+[node name="MovingPlatform3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 116, -540 )
+
+[node name="Goal" parent="." instance=ExtResource( 6 )]
+position = Vector2( -246, -726 )
+scale = Vector2( 0.5, 0.5 )

@@ -8,7 +8,7 @@ height = 52.0
 
 [node name="Stegosaurus" type="RigidBody2D"]
 mass = 100.0
-gravity_scale = 0.0
+gravity_scale = 50.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )

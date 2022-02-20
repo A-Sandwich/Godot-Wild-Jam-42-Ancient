@@ -32,12 +32,21 @@ func stop():
 	track_time = false
 
 func _on_win():
+	$"/root/WorldState".total_time += seconds_passed
 	win()
 
 func win():
 	track_time = false
-	$Win.visible = true
+	if $"/root/WorldState".has_next_level():
+		show_end()
+	else:
+		$Win.visible = true
 
 
 func _on_Button_pressed():
 	$"/root/WorldState".load_next_level()
+
+func show_end():
+	$End/TotalTime.text += $"/root/WorldState".format_time()
+	$End.visible = true
+	

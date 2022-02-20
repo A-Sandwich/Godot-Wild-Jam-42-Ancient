@@ -8,8 +8,9 @@ var play_attempts = false
 var player_ghost = load("res://Characters/PlayerGhost.tscn")
 var frames_replayed = 0
 var time_since_last_update = 0.0
-var levels = ["res://Levels/Level1.tscn", "res://Levels/Level2.tscn"]
+var levels = ["res://Levels/Level1.tscn", "res://Levels/Level2.tscn", "res://Levels/Level3.tscn", "res://Levels/Level4.tscn"]
 var level_index = 0
+var total_time = 0.0
 signal win
 
 func _physics_process(delta):
@@ -70,6 +71,9 @@ func reset_replay_data():
 	ghosts.clear()
 	frames_replayed = 0
 
+func has_next_level():
+	return (level_index + 1) < levels.size()
+
 func load_next_level():
 	reset_replay_data()
 	level_index += 1
@@ -78,3 +82,16 @@ func load_next_level():
 	var level = levels[level_index]
 	
 	get_tree().change_scene(level)
+
+func format_time():
+	var minutes = int(total_time / 60)
+	var seconds = int(total_time - (minutes * 60))
+	var str_seconds = str(seconds)
+	if seconds < 10:
+		str_seconds = "0"+str_seconds
+	var milliseconds = int((total_time - (minutes * 60) - seconds) * 100)
+	var str_milliseconds = str(milliseconds)
+	if milliseconds < 10:
+		str_milliseconds += "0"
+	var time = str(minutes) + ":" + str_seconds + ":" + str_milliseconds
+	return time
