@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/WorldParts/floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/WorldParts/Goal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/Space.tscn" type="PackedScene" id=5]
 
 [node name="Level2" type="Node2D"]
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
-tile_data = PoolIntArray( 327695, 1, 0, 327696, 1, 0, 393231, 1, 0, 393232, 1, 0, 458767, 1, 0, 458768, 1, 0, 524303, 1, 0, 524304, 1, 0, 655355, 1, 0, 655356, 1, 0, 655357, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0 )
+tile_data = PoolIntArray( 327695, 1, 0, 327696, 1, 0, 393231, 1, 0, 393232, 1, 0, 458767, 1, 0, 458768, 1, 0, 524303, 1, 0, 524304, 1, 0, 655342, 1, 0, 655343, 1, 0, 655344, 1, 0, 655345, 1, 0, 655346, 1, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 1, 0, 655351, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 1, 0, 655355, 1, 0, 655356, 1, 0, 655357, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 98, 585 )
+position = Vector2( -1190, 669 )
 
 [node name="Goal" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1299, 320 )
@@ -19,3 +20,21 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1242, 334 )
+
+[node name="Space" parent="." instance=ExtResource( 5 )]
+position = Vector2( -302, 642 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -145, 529 )
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -244, 509 )
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -337, 513 )
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -451, 521 )
