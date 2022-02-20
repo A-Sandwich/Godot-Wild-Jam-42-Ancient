@@ -23,6 +23,8 @@ func _process(delta):
 			str_milliseconds += "0"
 		var time = str(minutes) + ":" + str_seconds + ":" + str_milliseconds
 		$Time.text = time
+	if Input.is_action_just_pressed("FireBall") && $Win.visible:
+		$"/root/WorldState".load_next_level()
 
 func start():
 	track_time = true
