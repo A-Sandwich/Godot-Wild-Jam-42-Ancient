@@ -15,8 +15,6 @@ signal die
 func _ready():
 	pass # Replace with function body.
 
-func _draw():
-	draw_line(-position, Vector2(-ray_cast_distance*x,-ray_cast_distance), Color(255, 0, 0), 10)
 
 func _physics_process(delta):
 	velocity = Vector2(x,0)

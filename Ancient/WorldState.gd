@@ -75,6 +75,9 @@ func has_next_level():
 	return (level_index + 1) < levels.size()
 
 func load_next_level():
+	for ghost in ghosts:
+		ghost.queue_free()
+	ghosts.clear()
 	reset_replay_data()
 	level_index += 1
 	if level_index >= levels.size():
